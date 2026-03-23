@@ -19,7 +19,17 @@
 
         <div id="interactive-area">
             <p>網頁將在 <span id="countdown">30</span> 秒後自動重試連線...</p>
+
             <button id="valve-btn">點擊轉動閥門協助發電</button>
+            
+            <div id="battery-record-wrapper">
+                <p>目前電力：<span id="power-display">0</span> W / <span id="power-max">1000</span> W</p>
+                <div class="battery-outer">
+                    <div id="battery-bar"></div>
+                </div>
+            </div>
+    </div>
+
         </div>
     </main>
     <script src="script.js"></script>

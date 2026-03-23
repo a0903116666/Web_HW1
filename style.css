@@ -80,3 +80,54 @@ p {
     background-position: 0%; /* 改變漸層位置，產生反光的動態感 */
     transform: scale(1.05); /* 按鈕稍微變大，增加互動回饋 */
 }
+
+#valve-btn:active {
+    transform: scale(0.95); /* 點擊時輕微縮小，產生物理反饋 */
+}
+
+/* 電池紀錄條整體容器，置於下方 */
+#battery-record-wrapper {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #2a475e; /* 分隔線 */
+    text-align: center;
+}
+
+#battery-record-wrapper p {
+    font-size: 1rem;
+    color: #c6d4df; /* 預設文字藍灰色 */
+    margin-bottom: 10px;
+}
+
+/* 強化電力數字顯示 (黃色) */
+#power-display {
+    color: #FFD700; /* 金黃色，更有電力的感覺 */
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* 電池外框 (金屬質感) */
+.battery-outer {
+    width: 100%;
+    height: 25px; /* 高度適中 */
+    background-color: #171a21; /* 電池內部底色 */
+    border: 3px solid #3c5a7a; /* Steam 金屬藍灰色外框 */
+    border-radius: 5px; /* 柔和圓角 */
+    overflow: hidden; /* 確保內部電力不會超出外框 */
+    position: relative; /* 為內部電力條定位 */
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); /* 內陰影，做出立體感 */
+}
+
+/* 電池內部電力條 (黃色) */
+#battery-bar {
+    height: 100%;
+    width: 0%; /* 初始電力為 0% */
+    background: linear-gradient(to bottom, #FFD700 0%, #FFA500 100%); /* 黃色漸層，更有質感 */
+    border-radius: 2px;
+    
+    /* 核心動畫：當 width 改變時，產生平滑移動的感覺 */
+    transition: width 0.3s ease-out; 
+    
+    /* 加上 glowing 特效，更像電能 */
+    box-shadow: 0 0 10px #FFD700; 
+}
