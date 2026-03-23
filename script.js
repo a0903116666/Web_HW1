@@ -35,29 +35,42 @@ let powerGenerated = 0; // 設定初始電力為 0
 const powerGoal = 1000; // 設定電力總目標 (可以依需求修改)
 
 // 監聽按鈕點擊事件
-valveBtn.addEventListener('click', () => {
+valveBtn.addEventListener('click', (event) => {
     // 只有在還沒倒數完的時候可以點擊
     if (timeLeft > 0) {
         powerGenerated += 10; // 每次點擊增加 10 瓦特
         
-        // 1. 更新電力數字顯示 (例如：100 W / 1000 W)
+        // 1. 更新電力數字顯示與電池條 (原本的邏輯)
         powerDisplay.textContent = powerGenerated;
-        
-        // 2. 計算目前電力佔目標的百分比 (例如：100 / 1000 * 100 = 10%)
         let percentage = (powerGenerated / powerGoal) * 100;
-        
-        // 3. 確保百分比不會超過 100%
         if (percentage > 100) percentage = 100;
-        
-        // 核心動態回饋：將計算好的百分比應用到 CSS 的 width 屬性上
-        // 因為 CSS 加了 transition，所以電力條會平滑地往右移
         batteryBar.style.width = percentage + '%'; 
         
-        // 4. (選做) 如果電力滿了，可以給按鈕一個不同的狀態
         if (powerGenerated >= powerGoal) {
             valveBtn.textContent = "電力已充飽！";
             valveBtn.style.background = "#FFD700"; // 變成金黃色按鈕
             valveBtn.style.color = "#171a21";
         }
+
+        // 2. ⭐⭐⭐⭐ 新增功能：在點擊處新增閃電特效 ⭐⭐⭐⭐
+        
+        // A. 動態生成一個 <div> 作為閃電貼圖容器
+        const lightning = document.createElement('div');
+        lightning.classList.add('lightning-particle'); // 應用 CSS 樣式與動畫
+        lightning.textContent = '⚡'; // 填入閃電 (可以依需求換成圖案)
+
+        // B. 精確計算點擊位置 (使用 event.clientX / clientY，相對於視窗的座標)
+        // 因為 CSS 加了 translate(-50%, -50%)，所以這裡直接設定 left/top 即可
+        lightning.style.left = `${event.clientX}px`;
+        lightning.style.top = `${event.clientY}px`;
+
+        // C. 將閃電貼圖加入到網頁身體 (body) 中，讓它顯示
+        document.body.appendChild(lightning);
+
+        // D. ❗❗❗核心設定：設定在動畫結束後 (1s = 1000ms)，自動刪除這個閃電元素❗❗❗
+        // 這是為了避免網頁產生數千個用不到的閃電，導致網頁變卡 (DOM leak)。
+        setTimeout(() => {
+            lightning.remove(); 
+        }, 1000); // 必須與 CSS 動畫持續時間一致
     }
 });

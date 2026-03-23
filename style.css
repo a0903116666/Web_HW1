@@ -131,3 +131,35 @@ p {
     /* 加上 glowing 特效，更像電能 */
     box-shadow: 0 0 10px #FFD700; 
 }
+
+.lightning-particle {
+    position: absolute; /* 絕對定位，由 JavaScript 計算精確位置 */
+    pointer-events: none; /* ❗核心設定：滑鼠點擊會「穿透」它，不影響按鈕點擊 */
+    z-index: 1000; /* 確保它在所有元素最上面 */
+    
+    /* 閃電外觀 (你可以換成網路上找的閃電圖片網址，這裡用 Emoji 做演示) */
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* 閃電 glowing 特效 */
+    text-shadow: 0 0 10px #FFD700; 
+
+    /* 2. 觸發動畫：floatUpFadeOut，持續 1 秒，使用 ease-out (漸慢) 並保留最終狀態 (forwards) */
+    animation: floatUpFadeOut 1s ease-out forwards;
+}
+
+/* 3. 定義浮起與淡出的關鍵影格動畫 */
+@keyframes floatUpFadeOut {
+    0% {
+        opacity: 1; /* 初始完全不透明 */
+        /* ❗關鍵設定：translate(-50%, -50%) 讓閃電的「中心點」精確對準滑鼠點擊點 */
+        transform: translate(-50%, -50%) scale(0.8); 
+    }
+    100% {
+        opacity: 0; /* 最終完全透明 */
+        /* 向上的軌跡：保持水平中心對齊，垂直向上浮起 150px，並稍微放大 */
+        transform: translate(-50%, calc(-50% - 150px)) scale(1.2);
+    }
+}
