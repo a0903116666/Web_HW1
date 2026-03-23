@@ -1,0 +1,82 @@
+/* style.css */
+
+/* 1. 整個網頁的基礎設定 (重置邊距與設定背景) */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1b2838; /* Steam 經典深藍底色 */
+    color: #c6d4df; /* Steam 預設文字灰藍色 */
+    font-family: "Motiva Sans", Arial, Helvetica, sans-serif; /* Steam 常用的字體族系 */
+    
+    /* 使用 Flexbox 讓內容完美垂直水平置中 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 讓高度撐滿整個螢幕 */
+}
+
+/* 2. 標題 Logo 樣式 */
+header h1 {
+    color: #ffffff;
+    font-size: 3rem;
+    letter-spacing: 2px; /* 字距稍微拉開，更有質感 */
+    margin-bottom: 20px;
+}
+
+/* 3. 主要內容區塊 (做成一個有質感的卡片) */
+main {
+    background-color: #171a21; /* 比背景更深一點的區塊顏色，做出層次感 */
+    padding: 40px;
+    border-radius: 8px; /* 柔和的圓角 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* 加上陰影讓卡片浮現出來 */
+    max-width: 600px; /* 限制最大寬度，避免在大螢幕上文字拉太長 */
+    width: 90%; /* 在手機螢幕上會自動縮放 */
+    text-align: center;
+}
+
+/* 4. 錯誤訊息標題 */
+h2 {
+    color: #66c0f4; /* Steam 標誌性的亮藍色 */
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6; /* 增加行高，讓使用者閱讀起來更沒有壓力 */
+}
+
+/* 5. 互動區塊的分隔與排版 */
+#interactive-area {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #2a475e; /* 加一條淡淡的分隔線 */
+}
+
+#countdown {
+    color: #66c0f4; /* 讓倒數計時的數字特別顯眼 */
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+/* 6. Steam 風格按鈕 (漸層與動態效果) */
+#valve-btn {
+    background: linear-gradient(to right, #47bfff 5%, #1a44c2 60%); /* Steam 經典的漸層藍色按鈕 */
+    background-position: 25%;
+    background-size: 330% 100%;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border-radius: 2px; /* Steam 的按鈕通常比較方正 */
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease; /* 讓滑鼠移過去的特效更平滑 */
+}
+
+/* 當滑鼠游標停留在按鈕上時 (Hover 效果) */
+#valve-btn:hover {
+    background-position: 0%; /* 改變漸層位置，產生反光的動態感 */
+    transform: scale(1.05); /* 按鈕稍微變大，增加互動回饋 */
+}
